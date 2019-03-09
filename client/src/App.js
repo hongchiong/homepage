@@ -42,7 +42,7 @@ class App extends Component {
       console.log(response);
       this.setState({ units: response.data[response.data.length-1].units });
       let allBlkNums = this.state.units.map(unit => unit.blkNum);
-      // this.setState({ allBlkNums: rmDups(allBlkNums) });
+      this.setState({ allBlkNums: rmDups(allBlkNums) });
       this.setState({ currentBlkNum: this.state.allBlkNums[0] });
       console.log(this.state.currentBlkNum)
     })
