@@ -5,7 +5,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const hdbRoutes = express.Router();
 const hdbscrape = require('./scrapers/hdbscrape');
-const PORT = process.env.PORT 4000;
+const PORT = process.env.PORT || 4000;
 const scrapeSites = require('./scrapesites.js');
 const path = require('path');
 
