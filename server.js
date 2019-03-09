@@ -23,13 +23,13 @@ connection.once('open', function() {
 });
 
 scrapeSites.scrapeSites.forEach(site => {
-  // hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
-  //   let hdb = new Hdb({
-  //     project: Object.keys(allUnits),
-  //     units: allUnits[`${Object.keys(allUnits)}`]
-  //   });
-  //   hdb.save();
-  // });
+  hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
+    let hdb = new Hdb({
+      project: Object.keys(allUnits),
+      units: allUnits[`${Object.keys(allUnits)}`]
+    });
+    hdb.save();
+  });
 
   let town = site.projectname.split(" ")
 
