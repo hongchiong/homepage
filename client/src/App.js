@@ -67,7 +67,7 @@ class App extends Component {
   handleMenuItemClick(event, index) {
     this.setState({ selectedIndex: index, anchorEl: null });
 
-    axios.get(`/hsb${scrapeSites.sites[index].url}`)
+    axios.get(`/hdb${scrapeSites.sites[index].url}`)
     .then(response => {
       this.setState({ units: response.data[response.data.length-1].units });
       let allBlkNums = this.state.units.map(unit => unit.blkNum);
