@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get(`${scrapeSites.sites[this.state.selectedIndex].url}`)
+    axios.get(`/hdb${scrapeSites.sites[this.state.selectedIndex].url}`)
     .then(response => {
       console.log(response);
       this.setState({ units: response.data[response.data.length-1].units });
@@ -67,7 +67,7 @@ class App extends Component {
   handleMenuItemClick(event, index) {
     this.setState({ selectedIndex: index, anchorEl: null });
 
-    axios.get(`${scrapeSites.sites[index].url}`)
+    axios.get(`/hsb${scrapeSites.sites[index].url}`)
     .then(response => {
       this.setState({ units: response.data[response.data.length-1].units });
       let allBlkNums = this.state.units.map(unit => unit.blkNum);
