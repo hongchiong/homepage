@@ -22,6 +22,11 @@ connection.once('open', function() {
   console.log("MongoDB database connection established successfully");
 });
 
+setInterval(function() {
+  console.log("COOL");
+}, 1000);
+
+
 scrapeSites.scrapeSites.forEach(site => {
   hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
     let hdb = new Hdb({
