@@ -23,31 +23,31 @@ connection.once('open', function() {
 });
 
 setInterval(function() {
-  console.log("COOL");
-}, 1000);
-
-
-scrapeSites.scrapeSites.forEach(site => {
-  hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
-    let hdb = new Hdb({
-      project: Object.keys(allUnits),
-      units: allUnits[`${Object.keys(allUnits)}`]
+  scrapeSites.scrapeSites.forEach(site => {
+    hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
+      let hdb = new Hdb({
+        project: Object.keys(allUnits),
+        units: allUnits[`${Object.keys(allUnits)}`]
+      });
+      hdb.save();
     });
-    hdb.save();
-  });
 
-  let town = site.projectname.split(" ")
+    let town = site.projectname.split(" ")
 
-  hdbRoutes.route(`/${town[0]}/${town[1][0]}`).get(function(req, res) {
-    Hdb.find({ project: site.projectname }, function(err, hdbs) {
-      if (err) {
-        console.log(err);
-      } else {
-        res.json(hdbs);
-      };
+    hdbRoutes.route(`/${town[0]}/${town[1][0]}`).get(function(req, res) {
+      Hdb.find({ project: site.projectname }, function(err, hdbs) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.json(hdbs);
+        };
+      });
     });
   });
-});
+}, 3600);
+
+
+
 
 app.use('/hdb', hdbRoutes);
 app.get("/", (req, res) => {
