@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer');
 
 // //Web Scraper
 const hdbscrape = async (url, projectname) => {
-        const browser = await puppeteer.launch({headless: true});
+        const browser = await puppeteer.launch({headless: true, args: ['--no-sandbox']});
         //GO TO URL
         let page = await browser.newPage();
         await page.goto(url);
