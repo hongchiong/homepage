@@ -22,7 +22,7 @@ connection.once('open', function() {
   console.log("MongoDB database connection established successfully");
 });
 
-setInterval(function() {
+function startScrape() {
   scrapeSites.scrapeSites.forEach(site => {
     hdbscrape.scrape(site.url, site.projectname).then(allUnits => {
       let hdb = new Hdb({
@@ -44,7 +44,10 @@ setInterval(function() {
       });
     });
   });
-}, 3600);
+}
+
+startScrape();
+setInterval(startScrape, 3600);
 
 
 
